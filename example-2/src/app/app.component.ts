@@ -10,4 +10,25 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'example-2';
+
+  person = {
+    givenName: "Dimitris",
+    surName: "Drakopoulos",
+    email: "dimdrk@aueb.gr",
+    age: 36
+  };
+
+  person0 = {
+    givenName: "John",
+    surName: "Little",
+    email: "john@aueb.gr",
+    age: 36
+  };
+
+  person1 = {
+    givenName: "Bob",
+    surName: "Dylan",
+    email: "bob@aueb.gr",
+    age: 80
+  };
 }
