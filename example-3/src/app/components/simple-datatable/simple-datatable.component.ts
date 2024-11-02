@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EPerson, ManyPerson } from '../../shared/interfaces/person';
 import { sortBy } from 'lodash-es';
 
@@ -10,6 +10,8 @@ import { sortBy } from 'lodash-es';
     styleUrl: './simple-datatable.component.css'
 })
 export class SimpleDatatableComponent {
+	@Output() personClicked = new EventEmitter<EPerson>();
+
     manyPerson = ManyPerson;
 
     sortOrder: EPerson = {
@@ -56,5 +58,6 @@ export class SimpleDatatableComponent {
 
 	onPersonClick(person: EPerson) {
 		console.log(person);
+		this.personClicked.emit(person);
 	}
 }
