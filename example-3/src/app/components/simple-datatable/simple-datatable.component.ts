@@ -12,7 +12,7 @@ import { sortBy } from 'lodash-es';
 export class SimpleDatatableComponent {
     manyPerson = ManyPerson;
 
-    sortOrder = {
+    sortOrder: EPerson = {
         givenName: 'none',
         surName: 'none',
         age: 'none',
@@ -28,6 +28,16 @@ export class SimpleDatatableComponent {
 		this.sortOrder[sortKey] = 'asc';
 		this.manyPerson = sortBy(this.manyPerson, sortKey);
 		}
+
+
+			// 	sortData(sortKey: string): void {
+			// 			if (this.sortOrder['givenName'] === 'asc') {
+			// 			this.sortOrder['givenName'] = 'desc';
+			// 			this.manyPerson = sortBy(this.manyPerson, sortKey).reverse();
+			// 		} else {
+			// 		this.sortOrder['givenName'] = 'asc';
+			// 		this.manyPerson = sortBy(this.manyPerson, sortKey);
+			// 		}
 
 		// for (let key in this.sortOrder) {
 		// 	if (key != sortKey) {
