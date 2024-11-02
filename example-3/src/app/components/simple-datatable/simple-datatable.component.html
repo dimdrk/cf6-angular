@@ -1,16 +1,23 @@
 <table class="table table-bordered table-striped text-wrap">
     <thead>
         <tr>
-            <th role="button" (click)="sortData('givenName')">First Name</th>
-            <th role="button" (click)="sortData('surName')">Last Name</th>
-            <th role="button" (click)="sortData('age')">Age</th>
-            <th role="button" (click)="sortData('email')">Email</th>
-            <th role="button" (click)="sortData('address')">Address</th>
+            <th role="button" (click)="sortData('givenName')">
+                <!-- First Name {{sortSign('givenName')}} -->
+                First Name <span>[innerHTML]="sortSign('givenName')"</span>
+            </th>
+            <th role="button" (click)="sortData('surName')">
+                Last Name {{sortSign('surName')}}</th>
+            <th role="button" (click)="sortData('age')">
+                Age {{sortSign('age')}}</th>
+            <th role="button" (click)="sortData('email')">
+                Email {{sortSign('email')}}</th>
+            <th role="button" (click)="sortData('address')">
+                Address {{sortSign('address')}}</th>
         </tr>
     </thead>
     <tbody>
         @for (row of manyPerson; track row) {
-            <tr class="align-middle">
+            <tr class="align-middle" (dblclick)="onPersonClick(row)">
                 <td>{{row.givenName}}</td>
                 <td>{{row.surName}}</td>
                 <td>{{row.age}}</td>
