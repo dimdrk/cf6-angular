@@ -34,6 +34,10 @@ export class ReactiveFormStructureComponent {
     address: new FormControl('', Validators.required)
   })
 
+  ngOnInit() {
+    this.userForm.get('address')?.setValue('road1');
+  }
+
   onSubmit(value: any) {
     console.log(value);
     this.userForm.reset();
