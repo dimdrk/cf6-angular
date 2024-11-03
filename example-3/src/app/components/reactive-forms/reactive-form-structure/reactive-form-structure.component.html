@@ -20,6 +20,9 @@
             <mat-label>Email</mat-label>
             <input matInput type="text" formControlName="email">
             <mat-error>Email is missing or is invalid</mat-error>
+            <!-- @if(userForm.get("givenName")?.invalid && userForm.get("givenName")?.touched) {
+                <span>Field is required</span>
+            } -->
         </mat-form-field>
         <mat-form-field>
             <mat-label>Address</mat-label>
