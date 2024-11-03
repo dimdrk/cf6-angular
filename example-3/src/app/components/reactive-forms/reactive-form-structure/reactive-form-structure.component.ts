@@ -40,6 +40,7 @@ export class ReactiveFormStructureComponent {
 
   onSubmit(value: any) {
     console.log(value);
+    console.log(this.userForm.get('address')?.value);
     this.userForm.reset();
   }
 
