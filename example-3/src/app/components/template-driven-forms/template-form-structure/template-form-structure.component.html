@@ -1,4 +1,4 @@
-<div class="d-flex flex-column">
+<div class="d-flex flex-column gap-3">
     <h5>New Person Form</h5>
     <form #userForm="ngForm" class="d-flex flex-column">
         <mat-form-field>
@@ -45,6 +45,12 @@
         (click)="onSubmit(userForm.value)"
     >
         Submit
+    </button>        
+    <button
+        mat-flat-button
+        (click)="onSetValue()"
+    >
+        Reset Values
     </button>
 </div>
 

@@ -1,9 +1,10 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { EPerson } from '../../../shared/interfaces/person';
 
 @Component({
   selector: 'app-template-form-structure',
@@ -19,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './template-form-structure.component.css'
 })
 export class TemplateFormStructureComponent implements AfterViewInit {
+  @Output() person = new EventEmitter<EPerson>();
   @ViewChild('userForm', {static: false}) form: NgForm | undefined;
 
   ngAfterViewInit(): void {
@@ -37,7 +39,18 @@ export class TemplateFormStructureComponent implements AfterViewInit {
 
   onSubmit(value: any) {
     console.log(value);
-    console.log(this.form)
-    console.log(this.form?.value)
+    console.log(this.form);
+    console.log(this.form?.value);
+    this.person.emit(value as EPerson);
+  }
+
+  onSetValue() {
+    this.form?.setValue({
+      givenName: "lakis",
+      surName: "lalakis",
+      age: 50,
+      email: "lakis@aueb.gr",
+      address: "road1"
+    })
   }
 }
