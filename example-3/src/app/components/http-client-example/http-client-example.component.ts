@@ -18,12 +18,12 @@ export class HttpClientExampleComponent {
   ngOnInit(){
     this.jokesService.getDadJokes()
       .subscribe((data) => {
-        console.log(data)
-      });
+        console.log("DAD JOKE: ", data.joke)
+      })
 
       this.jokesService.getChuckNorrisJoke()
       .subscribe((data) => {
-        console.log(data)
-      });
+        console.log("CHUCK NORRIS JOKE: ", data.value)
+      })
   }
 }
