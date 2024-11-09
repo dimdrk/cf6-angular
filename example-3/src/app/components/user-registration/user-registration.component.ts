@@ -37,6 +37,35 @@ export class UserRegistrationComponent {
 
   onSubmit(value: any){
     console.log(value);
+    
+    this.checkOnSubmit()   
+  }
+
+  registerAnother(){
+    this.form.reset();
+    this.registrationStatus = {success:false, message: "Not attempted yet."};
+  }
+
+  check_duplicate_email(){
+    const email = this.form.get('email')?.value
+    if (email){
+      this.userService.check_duplicate_email(email).subscribe({
+        next:(response) => {
+          console.log(response.msg)
+          this.form.get('email')?.setErrors(null);
+        },
+        error: (response) => {
+          const message = response.error.msg;
+          console.log(message)
+          this.form.get('email')?.setErrors({duplicateEmail: true})
+        }
+      })
+    }
+  }
+
+  checkOnSubmit() {
+    const email = this.form.get('email')?.value
+
     const user: User = {
       givenName: this.form.get('givenName')?.value || '',
       surName: this.form.get('surName')?.value || '',
@@ -44,20 +73,24 @@ export class UserRegistrationComponent {
       password: this.form.get('password')?.value || ''
     }
 
-    this.userService.registerUser(user).subscribe({
-      next: (response) => {
-        console.log("No Errors", response);
-        this.registrationStatus = {success: true, message: response.msg};
-      },
-      error: (response) => {
-        console.log("Errors", response);
-        this.registrationStatus = {success: false, message: response.error.msg};
-      }
-    });
-  }
-
-  registerAnother(){
-    this.form.reset();
-    this.registrationStatus = {success:false, message: "Not attempted yet."};
+    if(email){
+      this.userService.check_duplicate_email(email).subscribe({
+        next: (responce) => {
+          this.userService.registerUser(user).subscribe({
+            next: (response) => {
+              console.log("No Errors", response);
+              this.registrationStatus = {success: true, message: response.msg};
+            },
+            error: (response) => {
+              console.log("Errors", response.error.msg);
+              this.registrationStatus = {success: false, message: response.error.msg};
+            }
+          })
+        },
+        error: (response) => {
+          console.log("WRONG WRONG", response.error.msg)
+        }
+      })
+    }
   }
 }
