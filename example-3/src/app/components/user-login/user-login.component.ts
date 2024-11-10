@@ -16,7 +16,9 @@ import { LoggedInUser } from '../../shared/interfaces/mongo-backend';
 export class UserLoginComponent {
 
     userSevice = inject(UserService);
-    router = inject(Router)
+    router = inject(Router);
+
+    invalidLogin = false;
 
     form = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -43,6 +45,7 @@ export class UserLoginComponent {
             },
             error: (error) => {
                 console.log('Login Error', error);
+                this.invalidLogin = true;
             }
         })
     }
