@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Credentials } from '../../shared/interfaces/mongo-backend';
+import { UserService } from '../../shared/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -10,8 +13,25 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class UserLoginComponent {
 
+    userSevice = inject(UserService);
+    router = inject(Router)
+
     form = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', Validators.required)
     })
+
+    onSubmit(){
+        const credentials = this.form.value as Credentials
+        this.userSevice.loginUser(credentials).subscribe({
+            next: (response) => {
+                const access_token = response.access_token;
+                console.log(access_token);
+                this.router.navigate(['restricted-content-example']);
+            },
+            error: (error) => {
+                console.log('Login Error', error);
+            }
+        })
+    }
 }
