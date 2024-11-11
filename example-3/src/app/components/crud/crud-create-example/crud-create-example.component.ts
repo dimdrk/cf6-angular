@@ -43,4 +43,14 @@ export class CrudCreateExampleComponent {
             zipcode: new FormControl('', Validators.required)
         })
     })
+
+    phoneNumbers = this.form.get('phoneNumbers') as FormArray;
+
+    removePhoneNumber(index: number){
+
+    }
+
+    addPhoneNumber(){
+
+    }
 }

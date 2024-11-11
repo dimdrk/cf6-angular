@@ -15,5 +15,5 @@ export interface Customer {
     email: string;
     afm: string;
     phoneNumbers: PhoneNumber[];
-    address: Address[];
+    address: Address;
 }
