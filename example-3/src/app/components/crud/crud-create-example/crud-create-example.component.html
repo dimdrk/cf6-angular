@@ -83,6 +83,7 @@
                 mat-raised-button
                 color="primary"
                 [disabled]="form.invalid"
+                (click)="onSubmit(form.value)"
             >   Υποβολή
             </button>
             <button
