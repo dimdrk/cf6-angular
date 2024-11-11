@@ -42,7 +42,8 @@ export class CrudCreateExampleComponent {
         address: new FormGroup({
             street: new FormControl('', Validators.required),
             city: new FormControl('', Validators.required),
-            zipcode: new FormControl('', Validators.required)
+            zipCode: new FormControl('', Validators.required),
+            number: new FormControl('', Validators.required)
         })
     })
 

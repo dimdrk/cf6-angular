@@ -68,12 +68,17 @@
                     <mat-error>Η οδός είναι υποχρεωτική.</mat-error>
                 </mat-form-field>
                 <mat-form-field>
+                    <mat-label>Αριθμός:</mat-label>
+                    <input matInput type="text" formControlName="number">
+                    <mat-error>Ο αριθμός είναι υποχρεωτικός.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
                     <mat-label>Πόλη:</mat-label>
                     <input matInput type="text" formControlName="city">
                     <mat-error>Η πόλη είναι υποχρεωτική.</mat-error>
                 </mat-form-field><mat-form-field>
                     <mat-label>Ταχυδρομικός Κώδικας:</mat-label>
-                    <input matInput type="text" formControlName="zipcode">
+                    <input matInput type="text" formControlName="zipCode">
                     <mat-error>Ο ταχυδρομικός κώδικας είναι υποχρεωτικός.</mat-error>
                 </mat-form-field>
             </div>
